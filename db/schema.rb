@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_153709) do
+ActiveRecord::Schema.define(version: 2021_05_09_155509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2021_05_09_153709) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "software_concepts", force: :cascade do |t|
+    t.bigint "concept_id", null: false
+    t.bigint "software_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["concept_id"], name: "index_software_concepts_on_concept_id"
+    t.index ["software_id"], name: "index_software_concepts_on_software_id"
+  end
+
   create_table "softwares", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -30,4 +39,6 @@ ActiveRecord::Schema.define(version: 2021_05_09_153709) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "software_concepts", "concepts"
+  add_foreign_key "software_concepts", "softwares"
 end

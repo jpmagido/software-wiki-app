@@ -1,6 +1,11 @@
 require 'ffaker'
 
 FactoryBot.define do
+  factory :software_concept do
+    concept { nil }
+    software { nil }
+  end
+
   factory :software do
     name { "MyString" }
     description { "MyText" }
