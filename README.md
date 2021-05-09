@@ -22,3 +22,23 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+rails db:create
+rails db:migrate
+rails db:migrate:status
+
+rails db:seed
+
+
+rails server
+rails console
+rails routes
+
+
+rvm pour installer ruby
+install rails
+
+git clone (url)
+cd ./dir
+
+bundle install

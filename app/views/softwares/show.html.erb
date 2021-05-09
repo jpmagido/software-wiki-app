@@ -6,3 +6,9 @@
   <li>Description: <%= @software.description %> </li>
   <li>Date de création: <%= @software.created_at.to_date %> </li>
 </ul>
+
+<div>
+  <% @software.concepts.each do |concept| %>
+    <%= link_to "page du concept: #{concept.name}", concept_path(concept)%>
+  <% end %>
+</div>
