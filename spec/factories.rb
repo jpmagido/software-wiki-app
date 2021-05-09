@@ -1,6 +1,11 @@
 require 'ffaker'
 
 FactoryBot.define do
+  factory :software do
+    name { "MyString" }
+    description { "MyText" }
+  end
+
   factory :concept do
     name { FFaker::Name.name }
     short_text { FFaker::Book.name }

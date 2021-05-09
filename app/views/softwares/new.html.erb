@@ -1,0 +1,17 @@
+<h1>Softwares#new</h1>
+
+<br>
+
+<h3> Formulaire création de Software</h3>
+
+<div>
+  <%= form_for @software do |form| %>
+    <%= form.label :name, "Nom:" %>
+    <%= form.text_field :name %>
+    <br>
+    <%= form.label :description, "description:" %>
+    <%= form.text_field :description %>
+    <br>
+    <%= form.submit 'Valider' %>
+  <% end %>
+</div>
