@@ -2,6 +2,10 @@
 <p>Find me in app/views/concepts/index.html.erb</p>
 
 <div>
+  <%= link_to 'Créer un concept', new_concept_path %>
+</div>
+
+<div>
   <% @concepts.each do |concept| %>
     <div class="container">
       <ul>

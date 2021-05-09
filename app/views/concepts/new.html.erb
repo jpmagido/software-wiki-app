@@ -1,2 +1,20 @@
-<h1>Concepts#new</h1>
-<p>Find me in app/views/concepts/new.html.erb</p>
+<br>
+
+<h3> Formulaire création de Concept</h3>
+
+<div>
+
+  <%= form_for @concept do |form| %>
+    <%= form.label :name, "Nom:" %>
+    <%= form.text_field :name %>
+    <br>
+    <%= form.label :short_text, "text:" %>
+    <%= form.text_field :short_text %>
+    <br>
+    <%= form.label :description, "description:" %>
+    <%= form.text_field :description %>
+    <br>
+    <%= form.submit 'Valider' %>
+  <% end %>
+
+</div>
