@@ -1,0 +1,17 @@
+<h1>Concepts#index</h1>
+<p>Find me in app/views/concepts/index.html.erb</p>
+
+<div>
+  <% @concepts.each do |concept| %>
+    <div class="container">
+      <ul>
+        <li>Id: <%= concept.id %> </li>
+        <li>Name: <%= concept.name %> </li>
+        <li>Short text: <%= concept.short_text %> </li>
+        <li>Description: <%= concept.description %> </li>
+        <li>Date de création: <%= concept.created_at.to_date %> </li>
+      </ul>
+      <br>
+    </div>
+  <% end %>
+</div>
