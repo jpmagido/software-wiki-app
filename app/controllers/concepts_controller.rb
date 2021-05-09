@@ -4,6 +4,7 @@ class ConceptsController < ApplicationController
   end
 
   def show
+    @concept = Concept.find(params[:id])
   end
 
   def edit

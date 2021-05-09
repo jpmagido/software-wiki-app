@@ -10,6 +10,7 @@
         <li>Short text: <%= concept.short_text %> </li>
         <li>Description: <%= concept.description %> </li>
         <li>Date de création: <%= concept.created_at.to_date %> </li>
+        <%= link_to 'lien de la page', concept_path(concept) %>
       </ul>
       <br>
     </div>
