@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_215344) do
   create_table "softwares", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.boolean "online", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
