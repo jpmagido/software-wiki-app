@@ -4,7 +4,7 @@
 
 <div>
 
-  <%= form_for @concept do |form| %>
+  <%= form_for new_software_concept_path(software, new_concept) do |form| %>
     <%= form.label :name, "Nom:" %>
     <%= form.text_field :name %>
     <br>
