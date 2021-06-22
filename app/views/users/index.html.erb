@@ -1,10 +1,15 @@
-<h1>Index des Utilisateurs</h1>
-<br>
-
-<% users.each do |user| %>
-  <ul>
-    <li> <%= user.name %> </li>
-    <li> <%= user.description %> </li>
+<div class="centered">
+  <div class="column">
+    <h1>Index des Utilisateurs</h1>
     <br>
-  </ul>
-<% end %>
+
+    <% users.each do |user| %>
+      <ul>
+        <li> <%= user.name %> </li>
+        <li> <%= user.description %> </li>
+        <li> <%= link_to 'détails', user_path(user) %> </li>
+        <br>
+      </ul>
+    <% end %>
+  </div>
+</div>

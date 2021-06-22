@@ -1,13 +1,13 @@
 <div class="interactions">
   <br>
   <% interactions.each do |interaction| %>
-    <div class="column">
+    <div class="column border">
       <div class="space-between">
-        <div><%= interaction.name %></div>
-        <div><%= interaction.title %></div>
-        <div><%= interaction.user.name %></div>
+        <div>Nom : <%= interaction.name %></div>
+        <div>Titre : <%= interaction.title %></div>
+        <div>Responsable : <%= interaction.user.name %></div>
       </div>
-      <%= interaction.description %>
+      Description : <%= interaction.description %>
     </div>
     <br>
   <% end %>
