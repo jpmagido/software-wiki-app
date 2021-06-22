@@ -8,7 +8,6 @@
       <li>Concept associé
         : <%= link_to property.concept.name, software_concept_path(property.concept.softwares.sample, property.concept) %></li>
       <li>Softwares associés :
-
         <% property.concept.softwares.each do |software| %>
           <%= link_to software.name, software_path(software) %>
         <% end %>

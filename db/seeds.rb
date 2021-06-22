@@ -7,13 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 SoftwareConcept.destroy_all
+Interaction.destroy_all
 Property.destroy_all
 Concept.destroy_all
 Software.destroy_all
+User.destroy_all
 
 p "j'ai tout supprimé"
 
 @software1 = Software.create!(name: 'SAGE', description: 'Je fais la compta')
+@project_manager = User.create!(name: 'chef de projet', description: 'le chef de projet est garant du bon déroulement des opérations')
+@planificator = User.create!(name: 'planificateur', description: 'le plannification organise le déroulement du projet')
 
 def create_project_concept
 
@@ -23,10 +27,38 @@ def create_project_concept
     description: "Un projet est un ensemble d'activités avec un début et une fin oug oug oug..."
   )
 
-  Property.create!(concept_id: project_concept.id, name: 'date de début', description: "La date de début d'un projet est la date à laquelle le projet blablabla.... Cette date détermine généralement la date de début des opérations")
+  start_date_property = Property.create!(concept_id: project_concept.id, name: 'date de début', description: "La date de début d'un projet est la date à laquelle le projet blablabla.... Cette date détermine généralement la date de début des opérations")
+  Interaction.create!(
+    name: 2,
+    title: "modifier la data de début d'un projet",
+    user: @project_manager,
+    description: "attention, la modification de la date de début de projet peut avoir un impact sur les autres activités",
+    target: start_date_property)
+
   Property.create!(concept_id: project_concept.id, name: 'propriétaire', description: "Le propriétaire blablabla")
   Property.create!(concept_id: project_concept.id, name: 'date de fin', description: "La date de fin d'un projet est la date à laquelle le projet bloblablo.... Cette date détermine généralement la date de fin des opérations")
   Property.create!(concept_id: project_concept.id, name: 'date des données', description: "La date des données est la date à laquelle les données bloblablo.... Cette date détermine généralement la date des données")
+
+  Interaction.create!(
+    name: 0,
+    title: 'créer un nouveau projet',
+    user: @project_manager,
+    description: "la création d'un nouveau projet a pour effet de générer un nouvel identifiant",
+    target: project_concept)
+
+  Interaction.create!(
+    name: 1,
+    title: 'supprimer un projet existant',
+    user: @planificator,
+    description: "la suppression d'un nouveau projet a pour effet de supprimer les activités associées",
+    target: project_concept)
+
+  Interaction.create!(
+    name: 2,
+    title: 'modifier un projet existant',
+    user: @project_manager,
+    description: "la modification d'un nouveau projet a pour effet de modifier les activités associées",
+    target: project_concept)
 
   SoftwareConcept.create!(software_id: @software1.id, concept_id: project_concept.id)
 

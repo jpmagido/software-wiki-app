@@ -14,13 +14,19 @@
     <% end %>
   </div>
 
-  <div class="border">
-    <ul>
-      <li>Id: <%= concept.id %> </li>
-      <li>Name: <%= concept.name %> </li>
-      <li>Short text: <%= concept.short_text %> </li>
-      <li>Description: <%= concept.description %> </li>
-      <li>Date de création: <%= concept.created_at.to_date %> </li>
-    </ul>
+  <div class="column">
+
+    <div class="border">
+      <ul>
+        <li>Id: <%= concept.id %> </li>
+        <li>Name: <%= concept.name %> </li>
+        <li>Short text: <%= concept.short_text %> </li>
+        <li>Description: <%= concept.description %> </li>
+        <li>Date de création: <%= concept.created_at.to_date %> </li>
+      </ul>
+    </div>
+    <br><br>
+    <h4>Interactions :</h4>
+    <%= render partial: 'interactions/list', locals: { interactions: concept_interactions} %>
   </div>
 </div>

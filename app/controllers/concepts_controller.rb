@@ -1,5 +1,5 @@
 class ConceptsController < ApplicationController
-  helper_method :concepts, :new_concept, :concept, :software
+  helper_method :concepts, :new_concept, :concept, :software, :concept_interactions
 
   def create
     concept = Concept.new(concept_params)
@@ -31,6 +31,10 @@ class ConceptsController < ApplicationController
 
   def new_concept
     @new_concept ||= Concept.new
+  end
+
+  def concept_interactions
+    @concept_interactions ||= concept.interactions
   end
 
   def concept_params
