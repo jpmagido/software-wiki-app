@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Interaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:interaction) { create(:interaction) }
+
+  it 'creates a valid instance of interaction' do
+    expect(interaction).to be_valid
+  end
 end
