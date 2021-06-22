@@ -8,10 +8,12 @@
   <li>Date de création: <%= software.created_at.to_date %> </li>
 </ul>
 <br>
-<div>
+<div class="column">
   <h3> Liste des Concepts associés</h3>
 
   <% software.concepts.each do |concept| %>
-    <%= link_to "#{concept.name}", software_concept_path(software, concept)%>
+    <div>
+      -> <%= link_to "#{concept.name}", software_concept_path(software, concept) %>
+    </div>
   <% end %>
 </div>

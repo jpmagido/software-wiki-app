@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  helper_method :software, :concept, :property
+  helper_method :software, :concept, :property, :properties
 
   def update
     if property.update(params_property)
@@ -26,6 +26,10 @@ class PropertiesController < ApplicationController
 
   def property
     @property ||= concept.properties.find(params[:id])
+  end
+
+  def properties
+    @properties ||= Property.all
   end
 
   def params_property

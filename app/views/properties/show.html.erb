@@ -1,16 +1,10 @@
-<h1>Properties#show</h1>
-<p>Find me in app/views/properties/show.html.erb</p>
-<div> <%= " #{software.name} > #{concept.name} > #{property.name}" %> </div>
+<h1>Properties# <%= property.name %></h1>
+<br>
+<div> <%= link_to(software.name, software_path(software)) + " > " + link_to(concept.name, software_concept_path(software, concept)) + " > " + property.name %> </div>
 
-<div>
-  <div><%= link_to "software: #{software.name}", software_path(software) %></div>
-  <div><%= link_to "concept: #{concept.name}", software_concept_path(software, concept) %></div>
-</div>
-
-<div>
+<br><br>
+<div class="">
   <ul>
-    <li> <%= property.name %> </li>
-    <li> <%= property.description %> </li>
-    <li> <%= property.created_at %> </li>
+    <%= render partial: 'properties/list', locals: { property: property} %>
   </ul>
 </div>

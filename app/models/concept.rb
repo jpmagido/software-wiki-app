@@ -1,5 +1,6 @@
 class Concept < ApplicationRecord
   has_many :software_concepts, dependent: :destroy
+  has_many :softwares, through: :software_concepts
   has_many :properties, dependent: :destroy
 
   validates_length_of :name, maximum: 50, minimum: 3

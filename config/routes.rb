@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   root 'static_pages#landing'
 
+  resources :properties, only: :index
+
   resources :softwares do
     resources :concepts do
-      resources :properties, only: [:show, :update, :edit, :destroy]
+      resources :properties, except: :index
     end
   end
 end
