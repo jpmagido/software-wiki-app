@@ -1,6 +1,12 @@
 require 'ffaker'
 
 FactoryBot.define do
+  factory :account do
+    name { FFaker::NameFR.first_name }
+    email { FFaker::Internet.email }
+    password { 'jesuiscon' }
+  end
+
   factory :interaction do
     name { Interaction.names.keys.sample }
     title { FFaker::Lorem.sentence }

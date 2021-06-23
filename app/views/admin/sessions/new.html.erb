@@ -1,0 +1,20 @@
+<div class="centered">
+<h1> Bienvenue sur l'accès Administrateur</h1>
+
+  <div>Veuillez renseigner vos identifiants :</div>
+
+  <div class="column">
+    <%= form_with url: admin_sessions_create_path, method: :post do |form| %>
+      <%= form.label :name, 'Votre nom : ' %>
+      <%= form.text_field :name %>
+      <br>
+      <%= form.label :email, 'Votre email : ' %>
+      <%= form.text_field :email %>
+      <br>
+      <%= form.label :password, 'Mot de passe : ' %>
+      <%= form.text_field :password %>
+      <br>
+      <%= form.submit "Se connecter" %>
+    <% end %>
+  </div>
+</div>
