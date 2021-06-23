@@ -1,2 +1,14 @@
 <h1>Accounts#edit</h1>
 <p>Find me in app/views/accounts/edit.html.erb</p>
+<%= form_with model: [:admin, account] do |form| %>
+  <%= form.label :name, 'Nom :' %>
+  <%= form.text_field :name, placeholder: 'Nom' %>
+  <br>
+  <%= form.label :email, 'Email :' %>
+  <%= form.text_area :email, size: "20x2", placeholder: 'Email' %>
+  <br>
+  <%= form.label :password, 'Passsword :' %>
+  <%= form.text_field :password, placeholder: 'Password' %>
+  <br>
+  <%= form.submit %>
+<% end %>

@@ -1,2 +1,14 @@
-<h1>Concepts#edit</h1>
-<p>Find me in app/views/concepts/edit.html.erb</p>
+<h1>Modifier le Concept </h1>
+<br>
+<%= form_with model: concept do |form| %>
+  <%= form.label :name, 'Nom : ' %>
+  <%= form.text_field :name, placeholder: 'Titre' %>
+  <br>
+  <%= form.label :short_text, 'short text :' %>
+  <%= form.text_area :short_text, size: "20x2", placeholder: 'Short text' %>
+  <br>
+  <%= form.label :description, 'Lieux :' %>
+  <%= form.text_field :description, placeholder: 'Description' %>
+  <br>
+  <%= form.submit %>
+<% end %>

@@ -1,2 +1,15 @@
-<h1>Softwares#edit</h1>
-<p>Find me in app/views/softwares/edit.html.erb</p>
+<h1>Modifier un Logiciel</h1>
+<br>
+
+<%= form_with model: software do |form| %>
+  <%= form.label :name, 'Nom : ' %>
+  <%= form.text_field :name, placeholder: 'Name' %>
+  <br>
+  <%= form.label :description, 'Description :' %>
+  <%= form.text_area :description, size: "20x2", placeholder: 'Description' %>
+  <br>
+  <%= form.label :online, 'En ligne ?' %>
+  <%= form.check_box :online, placeholder: 'Mettre en ligne ?' %>
+  <br>
+  <%= form.submit %>
+<% end %>
