@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Property, type: :model do
+  let(:property) { create(:property) }
+
+  it 'should create a valid instance of Property' do
+    expect(property).to be_valid
+  end
+
   describe "associations" do
     it { should belong_to(:concept) }
     it { should have_many(:interactions) }
