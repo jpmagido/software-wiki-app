@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :concepts
-  resources :softwares
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'static_pages/home'
+  get 'static_pages/landing'
+  get 'static_pages/contact'
+
+  root 'static_pages#landing'
+
+  resources :properties, only: :index
+  resources :interactions, :users, only: [:index, :show]
+
+  resources :softwares do
+    resources :concepts do
+      resources :properties, except: :index
+    end
+  end
 end

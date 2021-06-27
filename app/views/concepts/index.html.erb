@@ -2,11 +2,11 @@
 <p>Find me in app/views/concepts/index.html.erb</p>
 
 <div>
-  <%= link_to 'Créer un concept', new_concept_path %>
+  <%= link_to 'Créer un concept', new_software_concept_path(software, new_concept) %>
 </div>
 
 <div>
-  <% @concepts.each do |concept| %>
+  <% concepts.each do |concept| %>
     <div class="container">
       <ul>
         <li>Id: <%= concept.id %> </li>
@@ -14,7 +14,7 @@
         <li>Short text: <%= concept.short_text %> </li>
         <li>Description: <%= concept.description %> </li>
         <li>Date de création: <%= concept.created_at.to_date %> </li>
-        <%= link_to 'lien de la page', concept_path(concept) %>
+        <%= link_to 'lien de la page', software_concept_path(software, concept) %>
       </ul>
       <br>
     </div>

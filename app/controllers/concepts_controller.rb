@@ -1,28 +1,41 @@
 class ConceptsController < ApplicationController
-  def index
-    @concepts = Concept.all
-  end
-
-  def new
-    @concept = Concept.new
-  end
+  helper_method :concepts, :new_concept, :concept, :software, :concept_interactions
 
   def create
-    concept = Concept.create!(concept_params)
-    redirect_to concept_path(concept)
-  end
-
-  def show
-    @concept = Concept.find(params[:id])
-  end
-
-  def edit
+    concept = Concept.new(concept_params)
+    if concept.save
+      redirect_to software_concept_path(software, concept), notice: :success
+    else
+      redirect_to edit_software_concept_path(software, concept), notice: concept.errors.messages
+    end
   end
 
   def destroy
+    concept.destroy
+    redirect_to software_path software, notice: :success
   end
 
   private
+
+  def software
+    @software ||= Software.find params[:software_id]
+  end
+
+  def concepts
+    @concepts ||= software.concepts.all
+  end
+
+  def concept
+    @concept ||= concepts.find params[:id]
+  end
+
+  def new_concept
+    @new_concept ||= Concept.new
+  end
+
+  def concept_interactions
+    @concept_interactions ||= concept.interactions
+  end
 
   def concept_params
     params.require(:concept).permit(:name, :short_text, :description)

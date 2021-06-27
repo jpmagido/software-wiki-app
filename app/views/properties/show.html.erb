@@ -1,0 +1,17 @@
+<div class="centered">
+
+  <h1>Properties# <%= property.name %></h1>
+  <br>
+  <div> <%= link_to(software.name, software_path(software)) + " > " + link_to(concept.name, software_concept_path(software, concept)) + " > " + property.name %> </div>
+
+  <br><br>
+  <div class="">
+    <ul>
+      <%= render partial: 'properties/list', locals: { property: property } %>
+    </ul>
+  </div>
+
+  <br><br>
+  <h4>Interactions :</h4>
+  <%= render partial: 'interactions/list', locals: { interactions: property_interactions } %>
+</div>

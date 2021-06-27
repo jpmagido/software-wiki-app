@@ -1,0 +1,14 @@
+<h1> Bienvenue sur cette application de documentation de fou</h1>
+
+<div>
+  Vous pourrez consulter la documentation de plusieurs Softwares
+</div>
+
+Liste des softwares:
+<div class="border">
+  <% softwares.each do |software| %>
+    <ul>
+      <li> <%= link_to software.name, software_path(software) %> </li>
+    </ul>
+  <% end %>
+</div>

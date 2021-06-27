@@ -1,9 +1,32 @@
 <h3>SHOW CONCEPT</h3>
+<br>
+<div> <%= link_to(software.name, software_path(software)) + " > " + concept.name %> </div>
+<br>
 
-<ul>
-  <li>Id: <%= @concept.id %> </li>
-  <li>Name: <%= @concept.name %> </li>
-  <li>Short text: <%= @concept.short_text %> </li>
-  <li>Description: <%= @concept.description %> </li>
-  <li>Date de création: <%= @concept.created_at.to_date %> </li>
-</ul>
+<div class="space-around">
+  <div class="column border">
+    <h5> Propriétés :</h5>
+    <br>
+    <% concept.properties.each do |property| %>
+      <ul>
+        <li> <%= link_to property.name, software_concept_property_path(software, concept, property) %> </li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="column">
+
+    <div class="border">
+      <ul>
+        <li>Id: <%= concept.id %> </li>
+        <li>Name: <%= concept.name %> </li>
+        <li>Short text: <%= concept.short_text %> </li>
+        <li>Description: <%= concept.description %> </li>
+        <li>Date de création: <%= concept.created_at.to_date %> </li>
+      </ul>
+    </div>
+    <br><br>
+    <h4>Interactions :</h4>
+    <%= render partial: 'interactions/list', locals: { interactions: concept_interactions} %>
+  </div>
+</div>
