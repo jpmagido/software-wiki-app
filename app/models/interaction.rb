@@ -3,4 +3,7 @@ class Interaction < ApplicationRecord
 
   belongs_to :target, polymorphic: true
   belongs_to :user
+
+  validates_length_of :title, maximum: 100, minimum: 1
+  validates_length_of :description, maximum: 1000, minimum: 1
 end
