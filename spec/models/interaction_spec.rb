@@ -17,7 +17,7 @@ RSpec.describe Interaction, type: :model do
   end
 
   describe "name enum" do
-    it "should be a valid name" do
+    it "should has a right values" do
       name = { to_create: 0, to_delete: 1, to_edit: 2, to_import: 3, to_export: 4 }
       name.each {|key, value| 
         expect(Interaction.names[key]).to eq value
