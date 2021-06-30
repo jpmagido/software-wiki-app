@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_182451) do
+ActiveRecord::Schema.define(version: 2021_06_30_183155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2021_06_30_182451) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["role_id"], name: "index_interactions_on_role_id"
     t.index ["target_type", "target_id"], name: "index_interactions_on_target"
+  end
+
+  create_table "prodecures", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "actions"
+    t.bigint "interaction_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interaction_id"], name: "index_prodecures_on_interaction_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_182451) do
   end
 
   add_foreign_key "interactions", "roles"
+  add_foreign_key "prodecures", "interactions"
   add_foreign_key "properties", "concepts"
   add_foreign_key "software_concepts", "concepts"
   add_foreign_key "software_concepts", "softwares"
