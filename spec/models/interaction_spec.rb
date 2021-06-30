@@ -2,26 +2,25 @@ require 'rails_helper'
 
 RSpec.describe Interaction, type: :model do
   let(:interaction) { create(:interaction) }
-
+  
   it 'creates a valid instance of interaction' do
+    expect(interaction).to be_a(Interaction)
     expect(interaction).to be_valid
   end
-
-  describe "associations" do
+  
+  context "associations" do
     it { should belong_to(:user) }
+    it { should belong_to(:target) }
   end
   
-  describe "validations" do
+  context "validations" do
     it { should validate_length_of(:title).is_at_least(1).is_at_most(100) }
     it { should validate_length_of(:description).is_at_least(1).is_at_most(1000) }
   end
-
-  describe "name enum" do
-    it "should has a right values" do
-      name = { to_create: 0, to_delete: 1, to_edit: 2, to_import: 3, to_export: 4 }
-      name.each {|key, value| 
-        expect(Interaction.names[key]).to eq value
-      }
+  
+  context "enums" do
+    describe "name" do
+      it { should define_enum_for(:name).with_values(to_create: 0, to_delete: 1, to_edit: 2, to_import: 3, to_export: 4) }
     end
   end
 end
