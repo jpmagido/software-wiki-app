@@ -16,7 +16,6 @@ RSpec.describe Software, type: :model do
   context "validations" do
     it { should validate_length_of(:name).is_at_least(1).is_at_most(50) }
     it { should validate_length_of(:description).is_at_least(1).is_at_most(1000) }
-    it { should validate_inclusion_of(:online).in_array([true, false]) }
   end
   
   context "scopes" do

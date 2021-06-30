@@ -9,7 +9,7 @@ RSpec.describe Interaction, type: :model do
   end
   
   context "associations" do
-    it { should belong_to(:user) }
+    it { should belong_to(:role) }
     it { should belong_to(:target) }
   end
   

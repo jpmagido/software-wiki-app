@@ -1,0 +1,6 @@
+<div>Name : <%= procedure.name %> </div>
+<div>Description :<%= procedure.description %> </div>
+<div>Actions : <%= procedure.actions %> </div>
+
+<div><%= link_to "Interaction: #{procedure.interaction.title}", interaction_path(procedure.interaction) %> </div>
+<br>
