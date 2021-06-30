@@ -1,4 +1,4 @@
-class Prodecure < ApplicationRecord
+class Procedure < ApplicationRecord
   belongs_to :interaction
 
   validates_length_of :name, maximum: 100, minimum: 1

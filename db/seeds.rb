@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'ffaker'
 
 SoftwareConcept.destroy_all
 Interaction.destroy_all
@@ -12,6 +6,7 @@ Property.destroy_all
 Concept.destroy_all
 Software.destroy_all
 Role.destroy_all
+Procedure.destroy_all
 
 p "j'ai tout supprimé"
 
@@ -39,26 +34,39 @@ def create_project_concept
   Property.create!(concept_id: project_concept.id, name: 'date de fin', description: "La date de fin d'un projet est la date à laquelle le projet bloblablo.... Cette date détermine généralement la date de fin des opérations")
   Property.create!(concept_id: project_concept.id, name: 'date des données', description: "La date des données est la date à laquelle les données bloblablo.... Cette date détermine généralement la date des données")
 
-  Interaction.create!(
+  create_interaction = Interaction.create!(
     name: 0,
     title: 'créer un nouveau projet',
     role: @project_manager,
     description: "la création d'un nouveau projet a pour effet de générer un nouvel identifiant",
     target: project_concept)
 
-  Interaction.create!(
+  delete_interaction = Interaction.create!(
     name: 1,
     title: 'supprimer un projet existant',
     role: @planificator,
     description: "la suppression d'un nouveau projet a pour effet de supprimer les activités associées",
     target: project_concept)
 
-  Interaction.create!(
+  edit_interaction = Interaction.create!(
     name: 2,
     title: 'modifier un projet existant',
     role: @project_manager,
     description: "la modification d'un nouveau projet a pour effet de modifier les activités associées",
     target: project_concept)
+
+  [create_interaction, delete_interaction, edit_interaction].each do |interaction|
+    rand(1..5).times do
+      Procedure.create!(
+        name: FFaker::Lorem.word,
+        description: FFaker::Book.description,
+        actions: FFaker::Lorem.sentence,
+        interaction_id: interaction.id
+      )
+    end
+  end
+
+  p "Procédures crées"
 
   SoftwareConcept.create!(software_id: @software1.id, concept_id: project_concept.id)
 

@@ -5,6 +5,7 @@
       <div class="space-between">
         <div>Nom : <%= interaction.name %></div>
         <div>Titre : <%= interaction.title %></div>
+        <div><%= link_to "#{interaction.procedures.count} procédures", interaction_procedures_path(interaction) %></div>
         <div>Responsable : <%= interaction.role.name %></div>
       </div>
       Description : <%= interaction.description %>

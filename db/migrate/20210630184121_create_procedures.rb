@@ -1,6 +1,6 @@
-class CreateProdecures < ActiveRecord::Migration[6.1]
+class CreateProcedures < ActiveRecord::Migration[6.1]
   def change
-    create_table :prodecures do |t|
+    create_table :procedures do |t|
       t.string :name
       t.text :description
       t.text :actions

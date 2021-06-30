@@ -3,6 +3,7 @@ class Interaction < ApplicationRecord
 
   belongs_to :target, polymorphic: true
   belongs_to :role
+  has_many :procedures, dependent: :destroy
 
   validates_length_of :title, maximum: 100, minimum: 1
   validates_length_of :description, maximum: 1000, minimum: 1
