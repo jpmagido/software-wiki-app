@@ -11,13 +11,13 @@ Interaction.destroy_all
 Property.destroy_all
 Concept.destroy_all
 Software.destroy_all
-User.destroy_all
+Role.destroy_all
 
 p "j'ai tout supprimé"
 
 @software1 = Software.create!(name: 'SAGE', description: 'Je fais la compta')
-@project_manager = User.create!(name: 'chef de projet', description: 'le chef de projet est garant du bon déroulement des opérations')
-@planificator = User.create!(name: 'planificateur', description: 'le plannification organise le déroulement du projet')
+@project_manager = Role.create!(name: 'chef de projet', description: 'le chef de projet est garant du bon déroulement des opérations')
+@planificator = Role.create!(name: 'planificateur', description: 'le plannification organise le déroulement du projet')
 
 def create_project_concept
 
@@ -31,7 +31,7 @@ def create_project_concept
   Interaction.create!(
     name: 2,
     title: "modifier la data de début d'un projet",
-    user: @project_manager,
+    role: @project_manager,
     description: "attention, la modification de la date de début de projet peut avoir un impact sur les autres activités",
     target: start_date_property)
 
@@ -42,21 +42,21 @@ def create_project_concept
   Interaction.create!(
     name: 0,
     title: 'créer un nouveau projet',
-    user: @project_manager,
+    role: @project_manager,
     description: "la création d'un nouveau projet a pour effet de générer un nouvel identifiant",
     target: project_concept)
 
   Interaction.create!(
     name: 1,
     title: 'supprimer un projet existant',
-    user: @planificator,
+    role: @planificator,
     description: "la suppression d'un nouveau projet a pour effet de supprimer les activités associées",
     target: project_concept)
 
   Interaction.create!(
     name: 2,
     title: 'modifier un projet existant',
-    user: @project_manager,
+    role: @project_manager,
     description: "la modification d'un nouveau projet a pour effet de modifier les activités associées",
     target: project_concept)
 
