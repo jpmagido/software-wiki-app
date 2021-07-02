@@ -6,6 +6,6 @@ FactoryBot.define do
     title { FFaker::Lorem.sentence }
     description { FFaker::Book.description }
     association :target, factory: :property
-    association :user
+    association :role
   end
 end

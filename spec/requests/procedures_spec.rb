@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
-  let!(:user) { create(:user) }
+RSpec.describe "Procedures", type: :request do
+  let(:procedure) { create(:procedure)}
 
   describe "GET /index" do
     it "returns http success" do
-      get users_path
+      get interaction_procedures_path procedure.interaction
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /show" do
     it "returns http success" do
-      get user_path user.id
+      get interaction_procedure_path procedure.interaction, procedure
       expect(response).to have_http_status(:success)
     end
   end

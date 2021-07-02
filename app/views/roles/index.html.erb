@@ -1,0 +1,15 @@
+<div class="centered">
+  <div class="column">
+    <h1>Index des Roles</h1>
+    <br>
+
+    <% roles.each do |role| %>
+      <ul>
+        <li> <%= role.name %> </li>
+        <li> <%= role.description %> </li>
+        <li> <%= link_to 'détails', role_path(role) %> </li>
+        <br>
+      </ul>
+    <% end %>
+  </div>
+</div>

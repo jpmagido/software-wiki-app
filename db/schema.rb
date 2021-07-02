@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_141257) do
+ActiveRecord::Schema.define(version: 2021_06_30_184121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,21 @@ ActiveRecord::Schema.define(version: 2021_06_22_141257) do
     t.text "description"
     t.string "target_type", null: false
     t.bigint "target_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_interactions_on_role_id"
     t.index ["target_type", "target_id"], name: "index_interactions_on_target"
-    t.index ["user_id"], name: "index_interactions_on_user_id"
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "actions"
+    t.bigint "interaction_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interaction_id"], name: "index_procedures_on_interaction_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -43,6 +53,13 @@ ActiveRecord::Schema.define(version: 2021_06_22_141257) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["concept_id"], name: "index_properties_on_concept_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "software_concepts", force: :cascade do |t|
@@ -62,14 +79,8 @@ ActiveRecord::Schema.define(version: 2021_06_22_141257) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  add_foreign_key "interactions", "users"
+  add_foreign_key "interactions", "roles"
+  add_foreign_key "procedures", "interactions"
   add_foreign_key "properties", "concepts"
   add_foreign_key "software_concepts", "concepts"
   add_foreign_key "software_concepts", "softwares"

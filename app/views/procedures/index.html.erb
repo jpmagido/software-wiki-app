@@ -1,0 +1,7 @@
+<h1>Liste des procédures</h1>
+
+<div>
+  <% procedures.each do |procedure| %>
+    <%= render partial: 'procedures/list', locals: { procedure: procedure } %>
+  <% end %>
+</div>
