@@ -5,12 +5,8 @@ class PropertiesController < ApplicationController
     if property.update(params_property)
       redirect_to version_concept_property_path(version, concept, property), notice: :success
     else
-<<<<<<< HEAD
       flash.now[:error] = property.errors.full_messages.to_sentence
       render :edit
-=======
-      redirect_to edit_version_concept_property_path(version, concept, property), notice: property.errors.messages
->>>>>>> fcb138f865ba3f9d6c049c9ca620f3fd834e46f3
     end
   end
 
