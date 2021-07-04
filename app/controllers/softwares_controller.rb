@@ -2,15 +2,22 @@ class SoftwaresController < ApplicationController
   helper_method :softwares, :software, :new_software
 
   def create
-    software = Software.create(software_params)
-    redirect_to software_path(software)
+    software = Software.new(software_params)
+
+    if software.save
+      redirect_to software_path(software), notice: :success
+    else
+      flash.now[:error] = software.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def update
     if software.update(software_params)
       redirect_to software_path(software), notice: :success
     else
-      redirect_to edit_software_path(software), notice: software.errors.messages
+      flash.now[:error] = software.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
