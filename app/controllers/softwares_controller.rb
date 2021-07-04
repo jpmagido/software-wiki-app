@@ -2,7 +2,7 @@ class SoftwaresController < ApplicationController
   helper_method :softwares, :software, :new_software
 
   def create
-    software = Software.create!(software_params)
+    software = Software.create(software_params)
     redirect_to software_path(software)
   end
 
@@ -15,7 +15,7 @@ class SoftwaresController < ApplicationController
   end
 
   def destroy
-    software.destroy!
+    software.destroy
     redirect_to softwares_path, notice: 'software destroyed'
   end
 

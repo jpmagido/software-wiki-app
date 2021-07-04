@@ -1,28 +1,29 @@
 class ConceptsController < ApplicationController
-  helper_method :concepts, :new_concept, :concept, :software, :concept_interactions
+  helper_method :concepts, :new_concept, :concept, :version, :concept_interactions
 
   def create
-    concept = Concept.new(concept_params)
+    concept = version.new(concept_params)
     if concept.save
-      redirect_to software_concept_path(software, concept), notice: :success
+      redirect_to version_concept_path(version, concept), notice: :success
     else
-      redirect_to edit_software_concept_path(software, concept), notice: concept.errors.messages
+      flash.now[:error]= concept.errors.ful_messages.to_sentence
+      render :new
     end
   end
 
   def destroy
     concept.destroy
-    redirect_to software_path software, notice: :success
+    redirect_to version_path version, notice: :success
   end
 
   private
 
-  def software
-    @software ||= Software.find params[:software_id]
+  def version
+    @version ||= version.find params[:version_id]
   end
 
   def concepts
-    @concepts ||= software.concepts.all
+    @concepts ||= version.concepts.all
   end
 
   def concept

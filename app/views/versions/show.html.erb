@@ -1,0 +1,24 @@
+<div class="centered">
+  <div class="column">
+    <div>
+      <div> <%= "-> #{software.name}" %> </div>
+      <ul>
+        <li>Id: <%= software.id %> </li>
+        <li>Name: <%= software.name %> </li>
+        <li>Description: <%= software.description %> </li>
+        <li>Date de création: <%= software.created_at.to_date %> </li>
+      </ul>
+    </div>
+
+    <br>
+    <div class="column">
+      <h3> Liste des Concepts associés</h3>
+
+      <% software.concepts.each do |concept| %>
+        <div>
+          -> <%= link_to "#{concept.name}", software_concept_path(software, concept) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

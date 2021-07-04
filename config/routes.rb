@@ -5,16 +5,21 @@ Rails.application.routes.draw do
 
   root 'static_pages#landing'
 
-  resources :properties, only: :index
   resources :roles, only: [:index, :show]
+  resources :properties, only: :index
 
-  resources :interactions, only: [:index, :show] do
-    resources :procedures, only: [:index, :show]
-  end
-
-  resources :softwares do
+  resources :versions do
     resources :concepts do
       resources :properties, except: :index
     end
+  end
+  
+  resources :software do
+    resources :versions, shallow: true
+  end
+
+
+  resources :interactions, only: [:index, :show] do
+    resources :procedures, only: [:index, :show]
   end
 end

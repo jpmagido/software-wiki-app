@@ -1,6 +1,6 @@
 class Concept < ApplicationRecord
-  has_many :software_concepts, dependent: :destroy
-  has_many :softwares, through: :software_concepts
+  has_many :version_concepts, dependent: :destroy
+  has_many :versions, through: :version_concepts
   has_many :properties, dependent: :destroy
   has_many :interactions, as: :target
 
