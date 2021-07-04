@@ -1,27 +1,28 @@
 class PropertiesController < ApplicationController
-  helper_method :software, :concept, :property, :properties, :property_interactions
+  helper_method :version, :concept, :property, :properties, :property_interactions
 
   def update
     if property.update(params_property)
-      redirect_to software_concept_property_path(software, concept, property), notice: :success
+      redirect_to version_concept_property_path(version, concept, property), notice: :success
     else
-      redirect_to edit_software_concept_property_path(software, concept, property), notice: property.errors.messages
+      flash.now[:error] = property.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
   def destroy
     property.destroy
-    redirect_to software_concept_path(software, concept), notice: :success
+    redirect_to version_concept_path(version, concept), notice: :success
   end
 
   private
 
-  def software
-    @software ||= Software.find params[:software_id]
+  def version
+    @version ||= version.find params[:version_id]
   end
 
   def concept
-    @concept ||= software.concepts.find(params[:concept_id])
+    @concept ||= version.concepts.find(params[:concept_id])
   end
 
   def property
