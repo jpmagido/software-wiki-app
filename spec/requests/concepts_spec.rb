@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Concepts", type: :request do
-  let!(:software) { create(:software)}
+  let!(:version) { create(:version)}
   let!(:concept) { create(:concept)}
   let!(:software_concept) { create(:software_concept, concept: concept, software: software)}
 
