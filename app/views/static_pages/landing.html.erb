@@ -11,7 +11,7 @@ Liste des softwares:
     <div> Les versions en ligne </div>
     <ul>
       <% software.online_versions.each do |version| %>
-        <li> <%= link_to version.name, version_path(version) %> </li>
+        <li> <%= link_to version.name, software_version_path(software, version) %> </li>
       <% end %>
     </ul>
   <% end %>

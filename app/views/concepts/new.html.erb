@@ -1,9 +1,7 @@
 <br>
-
 <h3> Formulaire création de Concept</h3>
 
 <div class="centered">
-
   <%= form_for new_concept, url: version_concepts_path(version) do |form| %>
     <%= form.label :name, "Name :" %>
     <%= form.text_field :name %>
@@ -16,5 +14,4 @@
     <br>
     <%= form.submit 'Valider' %>
   <% end %>
-
 </div>

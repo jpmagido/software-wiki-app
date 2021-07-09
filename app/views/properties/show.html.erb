@@ -2,7 +2,7 @@
 
   <h1>Properties# <%= property.name %></h1>
   <br>
-  <div> <%= link_to(version.full_name, version_path(version)) + " > " + link_to(concept.name, version_concept_path(version, concept)) + " > " + property.name %> </div>
+  <div> <%= link_to(version.full_name, software_version_path(version.software, version)) + " > " + link_to(concept.name, version_concept_path(version, concept)) + " > " + property.name %> </div>
 
   <br><br>
   <div class="">

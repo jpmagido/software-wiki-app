@@ -8,7 +8,7 @@ RSpec.describe VersionConcept, type: :model do
   end
 
   context "associations" do
-    it { should belong_to(:concept) }
     it { should belong_to(:version) }
+    it { should belong_to(:concept) }
   end
 end

@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   resources :roles, only: [:index, :show]
   resources :properties, only: :index
 
-  resources :versions, except: [:index, :new, :create] do
+  resources :versions, only: [:edit, :update, :destroy] do
     resources :concepts do
       resources :properties, except: :index
     end
   end
   
   resources :softwares do
-    resources :versions, only: [:index, :new, :create]
+    resources :versions, only: [:index, :new, :create, :show]
   end
 
 

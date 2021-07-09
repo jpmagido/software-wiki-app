@@ -2,7 +2,7 @@ class VersionsController < ApplicationController
   helper_method :version, :new_version, :software, :concepts
 
   def create
-    version = software.new(version_params)
+    version = software.versions.new(version_params)
     if version.save
       redirect_to software_version_path(software, version), notice: :success
     else
@@ -28,7 +28,7 @@ class VersionsController < ApplicationController
   private
 
   def new_version
-    @new_version ||= version.new
+    @new_version ||= Version.new
   end
 
   def version
@@ -36,7 +36,7 @@ class VersionsController < ApplicationController
   end
 
   def software
-    @software ||= version.software
+    @software ||= Software.find(params[:software_id])
   end
 
   def concepts

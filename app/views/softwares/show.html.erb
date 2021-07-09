@@ -15,9 +15,13 @@
 
       <% versions.each do |version| %>
         <div>
-          -> <span> <%= "#{version.name}  - #{version.description}" %> </span> - <span><%= link_to 'lien vers la page', version_path(version) %></span>
+          -> <span> <%= "#{version.name}  - #{version.description}" %> </span> - <span><%= link_to 'lien vers la page', software_version_path(software, version) %></span>
         </div>
       <% end %>
     </div>
+    <br>
+    <div> <%= link_to 'Créer une nouvelle version', new_software_version_path(software) %> </div>
   </div>
+
+
 </div>

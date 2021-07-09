@@ -1,7 +1,7 @@
-<h3> Formulaire création de Software</h3>
+<h3> Formulaire création de Version</h3>
 
 <div>
-  <%= form_for new_software do |form| %>
+  <%= form_for new_version, url: software_versions_path(software) do |form| %>
     <%= form.label :name, "Nom:" %>
     <%= form.text_field :name %>
     <br>
