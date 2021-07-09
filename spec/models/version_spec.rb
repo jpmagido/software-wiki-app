@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Version, type: :model do
-  let(:version) { create(:version) }
+  let(:software) { create(:software, name: 'helpful software') }
+  let(:version) { create(:version, name: 'v.1', software: software) }
   
   it 'should create a valid instance of Software' do
     expect(version).to be_valid
@@ -15,7 +16,7 @@ RSpec.describe Version, type: :model do
   context "validations" do
     it { should validate_length_of(:name).is_at_least(1).is_at_most(10) }
     it { should validate_presence_of(:name) }
-    subject { FactoryBot.build(:version) }
+    subject { version }
     it { should validate_uniqueness_of(:name) }
     it { should validate_length_of(:description).is_at_least(1).is_at_most(1000) }
   end
@@ -26,8 +27,6 @@ RSpec.describe Version, type: :model do
         expect(version.full_name).to be_a(String)
       end
       it "should return the full name of version" do
-        software = FactoryBot.create(:software, name: 'helpful software')
-        version = FactoryBot.create(:version, name: 'v.1', software: software)
         expect(version.full_name).to eq('helpful software - v.1')
       end
     end
