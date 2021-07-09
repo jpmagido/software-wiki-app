@@ -1,5 +1,5 @@
 class InteractionsController < ApplicationController
-  helper_method :interactions, :interaction
+  helper_method :interaction, :interactions
 
   private
 
@@ -8,6 +8,6 @@ class InteractionsController < ApplicationController
   end
 
   def interaction
-    @interaction ||= interactions.find params[:id]
+    @interaction ||= Interaction.find params[:id]
   end
 end

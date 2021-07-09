@@ -1,4 +1,4 @@
-class SoftwareConcept < ApplicationRecord
-  belongs_to :concept
+class VersionConcept < ApplicationRecord
   belongs_to :version
+  belongs_to :concept
 end

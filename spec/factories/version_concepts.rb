@@ -1,8 +1,8 @@
 require 'ffaker'
 
 FactoryBot.define do
-  factory :software_concept do
+  factory :version_concept do
     association :concept
-    association :software
+    association :version
   end
 end

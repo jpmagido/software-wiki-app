@@ -9,8 +9,8 @@ RSpec.describe Concept, type: :model do
   end
 
   context "associations" do
-    it { should have_many(:software_concepts) }
-    it { should have_many(:softwares) }
+    it { should have_many(:version_concepts) }
+    it { should have_many(:versions) }
     it { should have_many(:properties) }
     it { should have_many(:interactions) }
   end

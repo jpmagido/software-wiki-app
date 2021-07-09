@@ -1,5 +1,5 @@
 class SoftwaresController < ApplicationController
-  helper_method :softwares, :software, :new_software
+  helper_method :softwares, :software, :versions, :new_software
 
   def create
     software = Software.new(software_params)
@@ -37,10 +37,15 @@ class SoftwaresController < ApplicationController
   end
 
   def software
-    @software ||= softwares.find(params[:id])
+    @software ||= Software.find(params[:id])
+  end
+
+  def versions
+    software.versions
   end
 
   def software_params
     params.require(:software).permit(:name, :description)
   end
+
 end

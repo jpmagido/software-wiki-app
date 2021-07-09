@@ -1,36 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe "Concepts", type: :request do
-  let!(:version) { create(:version)}
-  let!(:concept) { create(:concept)}
-  let!(:software_concept) { create(:software_concept, concept: concept, software: software)}
+  let(:version) { create(:version)}
+  let(:concept) { create(:concept)}
+  let(:version_concept) { create(:version_concept, concept: concept, version: version)}
 
   describe "GET /index" do
     it "returns http success" do
-      get software_concepts_path software
+      get version_concepts_path version
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /show" do
     it "returns http success" do
-      get software_concept_path software, concept
+      get version_concept_path version, concept
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /edit" do
     it "returns http success" do
-      get edit_software_concept_path software, concept
+      get edit_version_concept_path version, concept
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /new" do
     it "returns http success" do
-      get new_software_concept_path software
+      get new_version_concept_path version
       expect(response).to have_http_status(:success)
     end
   end
-
 end

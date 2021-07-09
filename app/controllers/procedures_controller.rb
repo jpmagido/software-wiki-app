@@ -1,5 +1,5 @@
 class ProceduresController < ApplicationController
-  helper_method :procedures, :procedure
+  helper_method :procedure, :interaction, :procedures
 
   private
 
@@ -12,6 +12,6 @@ class ProceduresController < ApplicationController
   end
 
   def procedure
-    @procedure ||= procedures.find params[:id]
+    @procedure ||= Procedure.find params[:id]
   end
 end

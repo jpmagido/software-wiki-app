@@ -13,6 +13,6 @@ class StaticPagesController < ApplicationController
   private
 
   def softwares
-    @softwares ||= Software.online
+    @softwares ||= Software.having_online_versions
   end
 end

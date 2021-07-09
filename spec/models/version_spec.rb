@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Software, type: :model do
+RSpec.describe Version, type: :model do
   let(:version) { create(:version) }
   
   it 'should create a valid instance of Software' do
-    expect(version).to be_a(Software)
     expect(version).to be_valid
   end
   
@@ -14,19 +13,22 @@ RSpec.describe Software, type: :model do
   end
   
   context "validations" do
-    it { should validate_length_of(:name).is_at_least(1).is_at_most(50) }
+    it { should validate_length_of(:name).is_at_least(1).is_at_most(10) }
     it { should validate_length_of(:description).is_at_least(1).is_at_most(1000) }
+    
+    subject { FactoryBot.build(:version) }
+    it { should validate_uniqueness_of(:name) }
   end
-  
-  context "scopes" do
-    describe "online" do
-      it "includes sftwares that are online" do
-        version = FactoryBot.create(:version, online: true)
-        expect(described_class.online).to include(version)
+
+  context "public instance methods" do
+    describe "full_name" do
+      it "should return a string" do
+        expect(version.full_name).to be_a(String)
       end
-      it "excludes sftwares that are not online" do
-        version = FactoryBot.create(:version, online: false)
-        expect(described_class.online).not_to include(version)
+      it "should return the full name of version" do
+        software = FactoryBot.create(:software, name: 'helpful software')
+        version = FactoryBot.create(:version, name: 'v.1', software: software)
+        expect(version.full_name).to eq('helpful software - v.1')
       end
     end
   end

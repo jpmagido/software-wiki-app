@@ -1,6 +1,6 @@
 <h3>SHOW CONCEPT</h3>
 <br>
-<div> <%= link_to(software.name, software_path(software)) + " > " + concept.name %> </div>
+<div> <%= link_to(version.full_name, version_path(version)) + " > " + concept.name %> </div>
 <br>
 
 <div class="space-around">
@@ -9,7 +9,7 @@
     <br>
     <% concept.properties.each do |property| %>
       <ul>
-        <li> <%= link_to property.name, software_concept_property_path(software, concept, property) %> </li>
+        <li> <%= link_to property.name, version_concept_property_path(version, concept, property) %> </li>
       </ul>
     <% end %>
   </div>

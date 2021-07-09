@@ -4,19 +4,18 @@
       <div> <%= "-> #{software.name}" %> </div>
       <ul>
         <li>Id: <%= software.id %> </li>
-        <li>Name: <%= software.name %> </li>
-        <li>Description: <%= software.description %> </li>
-        <li>Date de création: <%= software.created_at.to_date %> </li>
+        <li>Name : <%= software.name %> </li>
+        <li>Description : <%= software.description %> </li>
+        <li>Date de création : <%= software.created_at.to_date %> </li>
       </ul>
     </div>
-
     <br>
     <div class="column">
-      <h3> Liste des Concepts associés</h3>
+      <h3> Liste des versions associés</h3>
 
-      <% software.concepts.each do |concept| %>
+      <% versions.each do |version| %>
         <div>
-          -> <%= link_to "#{concept.name}", software_concept_path(software, concept) %>
+          -> <span> <%= "#{version.name}  - #{version.description}" %> </span> - <span><%= link_to 'lien vers la page', version_path(version) %></span>
         </div>
       <% end %>
     </div>

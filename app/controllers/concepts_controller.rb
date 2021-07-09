@@ -1,8 +1,8 @@
 class ConceptsController < ApplicationController
-  helper_method :concepts, :new_concept, :concept, :version, :concept_interactions
+  helper_method :version, :concept, :new_concept, :concepts, :concept_interactions
 
   def create
-    concept = version.new(concept_params)
+    concept = version.concepts.new(concept_params)
     if concept.save
       redirect_to version_concept_path(version, concept), notice: :success
     else
@@ -18,16 +18,16 @@ class ConceptsController < ApplicationController
 
   private
 
+  def concept
+    @concept ||= Concept.find params[:id]
+  end
+
   def version
-    @version ||= version.find params[:version_id]
+    @version ||= Version.find params[:version_id]
   end
 
   def concepts
-    @concepts ||= version.concepts.all
-  end
-
-  def concept
-    @concept ||= concepts.find params[:id]
+    version.concepts
   end
 
   def new_concept

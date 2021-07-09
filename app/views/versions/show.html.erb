@@ -1,12 +1,12 @@
 <div class="centered">
   <div class="column">
     <div>
-      <div> <%= "-> #{software.name}" %> </div>
+      <div> <%= "-> #{version.full_name}" %> </div>
       <ul>
-        <li>Id: <%= software.id %> </li>
-        <li>Name: <%= software.name %> </li>
-        <li>Description: <%= software.description %> </li>
-        <li>Date de création: <%= software.created_at.to_date %> </li>
+        <li>Id: <%= version.id %> </li>
+        <li>Name: <%= version.name %> </li>
+        <li>Description: <%= version.description %> </li>
+        <li>Date de création: <%= version.created_at.to_date %> </li>
       </ul>
     </div>
 
@@ -14,9 +14,9 @@
     <div class="column">
       <h3> Liste des Concepts associés</h3>
 
-      <% software.concepts.each do |concept| %>
+      <% concepts.each do |concept| %>
         <div>
-          -> <%= link_to "#{concept.name}", software_concept_path(software, concept) %>
+          -> <%= link_to concept.name, version_concept_path(version, concept) %>
         </div>
       <% end %>
     </div>

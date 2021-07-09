@@ -18,15 +18,15 @@ class PropertiesController < ApplicationController
   private
 
   def version
-    @version ||= version.find params[:version_id]
+    @version ||= Version.find params[:version_id]
   end
 
   def concept
-    @concept ||= version.concepts.find(params[:concept_id])
+    @concept ||= Concept.find(params[:concept_id])
   end
 
   def property
-    @property ||= concept.properties.find(params[:id])
+    @property ||= Property.find(params[:id])
   end
 
   def properties

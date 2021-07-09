@@ -1,22 +1,26 @@
 require 'ffaker'
 
-SoftwareConcept.destroy_all
+Role.destroy_all
+Software.destroy_all
+Version.destroy_all
+Concept.destroy_all
+VersionConcept.destroy_all
 Interaction.destroy_all
 Property.destroy_all
-Concept.destroy_all
-Software.destroy_all
-Role.destroy_all
 Procedure.destroy_all
 
 p "j'ai tout supprimé"
 
 @software1 = Software.create!(name: 'SAGE', description: 'Je fais la compta')
+3.times do |n|
+  @software1.versions.create!(name: "v#{n+1}", description: "#{n+1>1 ? "#{n+1} ème" : "#{n+1} ère"} version de SAGE")
+end
 @project_manager = Role.create!(name: 'chef de projet', description: 'le chef de projet est garant du bon déroulement des opérations')
 @planificator = Role.create!(name: 'planificateur', description: 'le plannification organise le déroulement du projet')
 
 def create_project_concept
 
-  project_concept = Concept.create!(
+  project_concept = @software1.versions.first.concepts.create!(
     name: 'PROJET',
     short_text: 'Ceci est un projet de qualité',
     description: "Un projet est un ensemble d'activités avec un début et une fin oug oug oug..."
@@ -68,14 +72,12 @@ def create_project_concept
 
   p "Procédures crées"
 
-  SoftwareConcept.create!(software_id: @software1.id, concept_id: project_concept.id)
-
   p 'Project Concept created '
 end
 
 def create_activity_concept
 
-  actitivy_concept = Concept.create!(
+  actitivy_concept = @software1.versions.first.concepts.create!(
     name: 'ACTIVITY',
     short_text: 'Ceci est une activité de qualité',
     description: "Une activité englobe de nombreux facteurs déterminant pour le logiciel ici présent oug oug oug..."
@@ -86,14 +88,12 @@ def create_activity_concept
   Property.create!(concept_id: actitivy_concept.id, name: 'date de fin', description: FFaker::Lorem.sentence)
   Property.create!(concept_id: actitivy_concept.id, name: 'date des données', description: FFaker::Lorem.sentence)
 
-  SoftwareConcept.create!(software_id: @software1.id, concept_id: actitivy_concept.id)
-
   p 'Activity Concept created '
 end
 
 def create_resource_concept
 
-  resource_concept = Concept.create!(
+  resource_concept = @software1.versions.first.concepts.create!(
     name: 'RESSOURCE',
     short_text: 'Ceci est une ressource de qualité',
     description: "Une ressource est utilisée par l'organisation pour subvenir aux besoins communs oug oug oug..."
@@ -104,14 +104,12 @@ def create_resource_concept
   Property.create!(concept_id: resource_concept.id, name: 'organisation', description: FFaker::Lorem.sentence)
   Property.create!(concept_id: resource_concept.id, name: 'date des données', description: FFaker::Lorem.sentence)
 
-  SoftwareConcept.create!(software_id: @software1.id, concept_id: resource_concept.id)
-
   p 'Resources Concept created '
 end
 
 def create_affectation_concept
 
-  affectation_concept = Concept.create!(
+  affectation_concept = @software1.versions.first.concepts.create!(
     name: 'AFFECTATION',
     short_text: 'Ceci est une affectation de qualité',
     description: "Une affectation est utilisée par l'organisation pour subvenir aux besoins communs oug oug oug..."
@@ -121,8 +119,6 @@ def create_affectation_concept
   Property.create!(concept_id: affectation_concept.id, name: 'date de démarrage', description: FFaker::Lorem.sentence)
   Property.create!(concept_id: affectation_concept.id, name: 'organisation', description: FFaker::Lorem.sentence)
   Property.create!(concept_id: affectation_concept.id, name: 'date de fin', description: FFaker::Lorem.sentence)
-
-  SoftwareConcept.create!(software_id: @software1.id, concept_id: affectation_concept.id)
 
   p 'Affectation Concept created '
 end

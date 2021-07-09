@@ -8,6 +8,6 @@ class RolesController < ApplicationController
   end
 
   def role
-    @role ||= roles.find params[:id]
+    @role ||= Role.find params[:id]
   end
 end

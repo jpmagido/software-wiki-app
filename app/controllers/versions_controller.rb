@@ -1,5 +1,5 @@
 class VersionsController < ApplicationController
-  helper_method :versions, :version, :new_version, :software
+  helper_method :version, :new_version, :software, :concepts
 
   def create
     version = software.new(version_params)
@@ -31,16 +31,16 @@ class VersionsController < ApplicationController
     @new_version ||= version.new
   end
 
-  def versions
-    @versions ||= version.all
-  end
-
   def version
-    @version ||= versions.find(params[:id])
+    @version ||= Version.find(params[:id])
   end
 
   def software
-    @software ||= Software.find(params[:software_id])
+    @software ||= version.software
+  end
+
+  def concepts
+    @concepts ||= version.concepts
   end
 
   def version_params

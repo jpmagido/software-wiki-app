@@ -7,8 +7,12 @@
 Liste des softwares:
 <div class="border">
   <% softwares.each do |software| %>
+    <div> <%= "-> #{software.name}" %> </div>
+    <div> Les versions en ligne </div>
     <ul>
-      <li> <%= link_to software.name, software_path(software) %> </li>
+      <% software.online_versions.each do |version| %>
+        <li> <%= link_to version.name, version_path(version) %> </li>
+      <% end %>
     </ul>
   <% end %>
 </div>
