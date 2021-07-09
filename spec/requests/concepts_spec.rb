@@ -12,16 +12,16 @@ RSpec.describe "Concepts", type: :request do
     end
   end
 
-  describe "GET /show" do
+  describe "GET /new" do
     it "returns http success" do
-      get version_concept_path version, concept
+      get new_version_concept_path version
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /new" do
+  describe "GET /show" do
     it "returns http success" do
-      get new_version_concept_path version
+      get version_concept_path version, concept
       expect(response).to have_http_status(:success)
     end
   end
@@ -32,5 +32,5 @@ RSpec.describe "Concepts", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 end
+
