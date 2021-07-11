@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Softwares", type: :request do
-  let!(:software) { create(:software)}
+  let!(:software) { create(:software) }
 
   describe "GET /index" do
     it "returns http success" do
