@@ -1,3 +1,5 @@
+<!-- Page not used for now -->
+
 <h1>Index des Softwares</h1>
 <br>
 <div>
@@ -8,10 +10,10 @@
   <% softwares.each do |software| %>
     <div class="container">
       <ul>
-        <li>Id: <%= software.id %> </li>
-        <li>Name: <%= software.name %> </li>
-        <li>Description: <%= software.description %> </li>
-        <li>Date de création: <%= software.created_at.to_date %> </li>
+        <li> Id: <%= software.id %> </li>
+        <li> Name: <%= software.name %> </li>
+        <li> Description: <%= software.description %> </li>
+        <li> Date de création: <%= software.created_at.to_date %> </li>
         <%= link_to 'lien de la page', software_path(software) %>
       </ul>
       <br>

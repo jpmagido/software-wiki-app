@@ -1,0 +1,10 @@
+<h2> Liste des tous les softwares avec leurs versions </h2>
+
+<div>
+  <% software_identities.each do |software_identity| %>
+    <ul class="border">
+      <li> <%= link_to software_identity.name, softwares_identity_path(software_identity) %> </li>
+      <li> Versions disponibles: <%= software_identity.version_count %> </li>
+    </ul>
+  <% end %>
+</div>

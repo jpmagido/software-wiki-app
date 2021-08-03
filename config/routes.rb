@@ -17,4 +17,6 @@ Rails.application.routes.draw do
       resources :properties, except: :index
     end
   end
+
+  resources :softwares_identity, only: [:show, :index]
 end

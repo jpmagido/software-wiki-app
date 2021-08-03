@@ -1,0 +1,24 @@
+<h3> Vous êtes sur la page de <%= software_identity.name %> </h3>
+
+<div>
+  <ul>
+    <li> Nom : <%= software_identity.name %></li>
+    <li> Description : <%= software_identity.description %></li>
+    <li> Crée le : <%= software_identity.created_at %></li>
+  </ul>
+</div>
+
+<br>
+<hr>
+<br>
+<div>
+  <div> Versions disponibles: <%= software_identity.version_count %> </div>
+  <div>
+    <% software_identity.softwares.each do |software| %>
+      <ul>
+        <li> <%= link_to "1.1", software_path(software) %> </li>
+      </ul>
+    <% end %>
+  </div>
+
+</div>
