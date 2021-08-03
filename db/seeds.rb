@@ -14,7 +14,7 @@ p "j'ai tout supprimé"
 @software_identity = SoftwareIdentity.create!(name: 'sage', description: 'je fais la compta')
 
 
-@software1 = Software.create!(software_identity_id: @software_identity.id, online: true)
+@software1 = Software.create!(software_identity_id: @software_identity.id, online: true, version: '1.0')
 @project_manager = Role.create!(name: 'chef de projet', description: 'le chef de projet est garant du bon déroulement des opérations')
 @planificator = Role.create!(name: 'planificateur', description: 'le plannification organise le déroulement du projet')
 

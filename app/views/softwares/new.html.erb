@@ -6,12 +6,12 @@
 
 <div>
   <%= form_for new_software do |form| %>
-    <#%= form.label :name, "Nom:" %>
-    <#%= form.text_field :name %>
+    <%= form.label :online, "Mettre en ligne" %>
+    <%= form.check_box :online %>
     <br>
-    <#%= form.label :description, "description:" %>
-    <#%= form.text_field :description %>
+    <%= form.label :version, "Version" %>
+    <%= form.text_field :version %>
     <br>
-    <#%= form.submit 'Valider' %>
+    <%= form.submit 'Valider' %>
   <% end %>
 </div>

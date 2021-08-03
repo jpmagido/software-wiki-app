@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_184121) do
 
   create_table "softwares", force: :cascade do |t|
     t.boolean "online", default: true
+    t.string "version", null: false
     t.bigint "software_identity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

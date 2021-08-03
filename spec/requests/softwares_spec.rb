@@ -12,7 +12,7 @@ RSpec.describe "Softwares", type: :request do
 
   describe "GET /new" do
     it "returns http success" do
-      get new_software_path
+      get new_softwares_identity_software_path(software.software_identity)
       expect(response).to have_http_status(:success)
     end
   end

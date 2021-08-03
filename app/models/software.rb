@@ -4,6 +4,7 @@ class Software < ApplicationRecord
   has_many :concepts, through: :software_concepts
 
   validates :online, inclusion: [true, false]
+  validates_uniqueness_of :version, scope: :software_identity_id
 
   scope :online, -> { where(online: true) }
 
