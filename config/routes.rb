@@ -12,9 +12,13 @@ Rails.application.routes.draw do
     resources :procedures, only: [:index, :show]
   end
 
-  resources :softwares do
+  resources :softwares, except: :new do
     resources :concepts do
       resources :properties, except: :index
     end
+  end
+
+  resources :softwares_identity, only: [:show, :index] do
+    resources :softwares, only: :new
   end
 end

@@ -22,7 +22,7 @@ class SoftwaresController < ApplicationController
   private
 
   def new_software
-    @new_software ||= Software.new
+    @new_software ||= Software.new(software_identity_id: params[:softwares_identity_id])
   end
 
   def softwares
@@ -34,6 +34,6 @@ class SoftwaresController < ApplicationController
   end
 
   def software_params
-    params.require(:software).permit(:name, :description)
+    params.require(:software).permit(:online)
   end
 end
