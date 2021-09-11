@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 2021_09_11_084846) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "software_concepts", force: :cascade do |t|
+    t.bigint "concept_id", null: false
+    t.bigint "software_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["concept_id"], name: "index_software_concepts_on_concept_id"
+    t.index ["software_id"], name: "index_software_concepts_on_software_id"
+  end
+
   create_table "software_identities", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -70,10 +79,12 @@ ActiveRecord::Schema.define(version: 2021_09_11_084846) do
   end
 
   create_table "softwares", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.boolean "online", default: true
+    t.string "version", null: false
+    t.bigint "software_identity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["software_identity_id"], name: "index_softwares_on_software_identity_id"
   end
 
   create_table "values", force: :cascade do |t|
@@ -85,29 +96,10 @@ ActiveRecord::Schema.define(version: 2021_09_11_084846) do
     t.index ["property_id"], name: "index_values_on_property_id"
   end
 
-  create_table "version_concepts", force: :cascade do |t|
-    t.bigint "version_id", null: false
-    t.bigint "concept_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["concept_id"], name: "index_version_concepts_on_concept_id"
-    t.index ["version_id"], name: "index_version_concepts_on_version_id"
-  end
-
-  create_table "versions", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.boolean "online", default: true
-    t.bigint "software_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["software_id"], name: "index_versions_on_software_id"
-  end
-
   add_foreign_key "interactions", "roles"
   add_foreign_key "procedures", "interactions"
   add_foreign_key "properties", "concepts"
-  add_foreign_key "version_concepts", "concepts"
-  add_foreign_key "version_concepts", "versions"
-  add_foreign_key "versions", "softwares"
+  add_foreign_key "software_concepts", "concepts"
+  add_foreign_key "software_concepts", "softwares"
+  add_foreign_key "softwares", "software_identities"
 end

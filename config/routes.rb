@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  get 'values/show'
   get 'static_pages/home'
   get 'static_pages/landing'
   get 'static_pages/contact'
 
   root 'static_pages#landing'
 
-  resources :properties, only: :index
+  resources :properties, only: :index do
+    resources :values, only: [:create, :show]
+  end
   resources :roles, only: [:index, :show]
 
   resources :interactions, only: [:index, :show] do
