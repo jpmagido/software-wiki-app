@@ -1,11 +1,14 @@
 <h3>Nouvelle valeur</h3>
 <br>
-<%= form_for new_value, url: property_values_path(property) do |f| %>
-  <%= f.label :text, 'Texte :' %>
-  <%= f.text_field :text %>
-  <br>
-  <%= f.label :description, 'Description :' %>
-  <%= f.text_field :description %>
-  <br>
-  <%= f.submit 'Valider' %>
-<% end %>
+<div>
+
+  <%= form_with model: [property, new_value] do |f| %>
+    <%= f.label :text, 'Texte :' %>
+    <%= f.text_field :text %>
+    <br>
+    <%= f.label :description, 'Description :' %>
+    <%= f.text_field :description %>
+    <br>
+    <%= f.submit 'Valider' %>
+  <% end %>
+</div>

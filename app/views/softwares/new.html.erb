@@ -5,7 +5,7 @@
 <h3> Formulaire création de Software</h3>
 
 <div>
-  <%= form_for new_software do |form| %>
+  <%= form_with model: new_software do |form| %>
     <%= form.label :online, "Mettre en ligne" %>
     <%= form.check_box :online %>
     <br>

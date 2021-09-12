@@ -4,6 +4,7 @@ class ConceptsController < ApplicationController
   def create
     concept = Concept.new(concept_params)
     if concept.save
+      concept.software_concepts.create!(software_id: params[:software_id])
       redirect_to software_concept_path(software, concept), notice: :success
     else
       redirect_to edit_software_concept_path(software, concept), notice: concept.errors.messages
