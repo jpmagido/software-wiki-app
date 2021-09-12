@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_184121) do
+ActiveRecord::Schema.define(version: 2021_09_11_084846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,12 +71,29 @@ ActiveRecord::Schema.define(version: 2021_06_30_184121) do
     t.index ["software_id"], name: "index_software_concepts_on_software_id"
   end
 
-  create_table "softwares", force: :cascade do |t|
+  create_table "software_identities", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "online", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "softwares", force: :cascade do |t|
+    t.boolean "online", default: true
+    t.string "version", null: false
+    t.bigint "software_identity_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["software_identity_id"], name: "index_softwares_on_software_identity_id"
+  end
+
+  create_table "values", force: :cascade do |t|
+    t.string "text"
+    t.text "description"
+    t.bigint "property_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_id"], name: "index_values_on_property_id"
   end
 
   add_foreign_key "interactions", "roles"
@@ -84,4 +101,5 @@ ActiveRecord::Schema.define(version: 2021_06_30_184121) do
   add_foreign_key "properties", "concepts"
   add_foreign_key "software_concepts", "concepts"
   add_foreign_key "software_concepts", "softwares"
+  add_foreign_key "softwares", "software_identities"
 end

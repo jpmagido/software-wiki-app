@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  helper_method :software, :concept, :property, :properties, :property_interactions
+  helper_method :software, :concept, :property, :properties, :property_interactions, :values
 
   def update
     if property.update(params_property)
@@ -34,6 +34,10 @@ class PropertiesController < ApplicationController
 
   def property_interactions
     @property_interactions ||= property.interactions
+  end
+
+  def values
+    @values ||= property.values
   end
 
   def params_property

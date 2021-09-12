@@ -5,12 +5,16 @@ Interaction.destroy_all
 Property.destroy_all
 Concept.destroy_all
 Software.destroy_all
+SoftwareIdentity.destroy_all
 Role.destroy_all
 Procedure.destroy_all
 
 p "j'ai tout supprimé"
 
-@software1 = Software.create!(name: 'SAGE', description: 'Je fais la compta')
+@software_identity = SoftwareIdentity.create!(name: 'sage', description: 'je fais la compta')
+
+
+@software1 = Software.create!(software_identity_id: @software_identity.id, online: true, version: '1.0')
 @project_manager = Role.create!(name: 'chef de projet', description: 'le chef de projet est garant du bon déroulement des opérations')
 @planificator = Role.create!(name: 'planificateur', description: 'le plannification organise le déroulement du projet')
 

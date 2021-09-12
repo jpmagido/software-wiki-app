@@ -1,17 +1,22 @@
-<div class="centered">
+<h3>SHOW PROPERTY</h3>
 
-  <h1>Properties# <%= property.name %></h1>
-  <br>
-  <div> <%= link_to(software.name, software_path(software)) + " > " + link_to(concept.name, software_concept_path(software, concept)) + " > " + property.name %> </div>
+<h1>Properties# <%= property.name %></h1>
 
-  <br><br>
-  <div class="">
-    <ul>
-      <%= render partial: 'properties/list', locals: { property: property } %>
-    </ul>
-  </div>
-
-  <br><br>
+<br>
+<div> <%= link_to(software.name, software_path(software)) + " > " + link_to(concept.name, software_concept_path(software, concept)) + " > " + property.name %> </div>
+<br><br>
+<div>
+  <ul>
+    <%= render partial: 'properties/list', locals: { property: property } %>
+  </ul>
+</div>
+<br>
+<div>
   <h4>Interactions :</h4>
   <%= render partial: 'interactions/list', locals: { interactions: property_interactions } %>
 </div>
+<div>
+  <h4>Values :</h4><br>
+  <%= render 'values/list', values: values %>
+</div>
+<%= link_to 'Créer une nouvelle valeur', new_property_value_path(property) %>
