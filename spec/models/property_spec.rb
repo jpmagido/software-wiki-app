@@ -10,6 +10,7 @@ RSpec.describe Property, type: :model do
   context "associations" do
     it { should belong_to(:concept) }
     it { should have_many(:interactions) }
+    it { should have_many(:values) }
   end
   
   context "validations" do
