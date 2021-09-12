@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   root 'static_pages#landing'
 
-  resources :properties, only: :index
+  resources :properties, only: :index do
+    resources :values, only: [:new, :create, :show]
+  end
   resources :roles, only: [:index, :show]
 
   resources :interactions, only: [:index, :show] do
