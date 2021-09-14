@@ -2,12 +2,15 @@ class ConceptsController < ApplicationController
   helper_method :concepts, :new_concept, :concept, :software, :concept_interactions
 
   def create
-    concept = Concept.new(concept_params)
-    if concept.save
-      concept.software_concepts.create!(software_id: params[:software_id])
-      redirect_to software_concept_path(software, concept), notice: :success
+    @concept = Concept.new(concept_params)
+    if @concept.save
+      @concept.software_concepts.create!(software_id: params[:software_id])
+      # software.concepts << @concept
+      redirect_to software_concept_path(software, @concept), notice: :success
     else
-      redirect_to edit_software_concept_path(software, concept), notice: concept.errors.messages
+      redirect_to edit_software_concept_path(software, @concept), notice: concept.errors.messages
+      # flash[:error] = @concept.errors.full_messages.to_sentence
+      # render :new
     end
   end
 
@@ -32,6 +35,7 @@ class ConceptsController < ApplicationController
 
   def new_concept
     @new_concept ||= Concept.new
+    # @concept ||= Concept.new
   end
 
   def concept_interactions
