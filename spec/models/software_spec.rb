@@ -4,6 +4,7 @@ RSpec.describe Software, type: :model do
   let(:software) { create(:software) }
 
   it 'should create a valid instance of Software' do
+    debugger
     expect(software).to be_valid
   end
 
@@ -14,6 +15,11 @@ RSpec.describe Software, type: :model do
   end
 
   context "validations" do
+    let(:invalid_software) { create(:software, version: software.version, software_identity: software.software_identity) }
+
+    it "should raise an error" do
+      expect{ invalid_software }.to raise_error(ActiveRecord::RecordInvalid)
+    end
   end
 
   describe ".online" do
