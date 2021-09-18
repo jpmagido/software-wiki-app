@@ -4,9 +4,8 @@ class Software < ApplicationRecord
   has_many :concepts, through: :software_concepts
 
   validates :online, inclusion: [true, false]
-  # validates_uniqueness_of :version, scope: :software_identity_id
   validates_with Validators::VersionValidator
-  
+
   scope :online, -> { where(online: true) }
 
   def name

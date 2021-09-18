@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Software, type: :model do
-  let(:software) { create(:software) }
+  let(:software) { build(:software) }
 
   it 'should create a valid instance of Software' do
     expect(software).to be_valid
@@ -14,10 +14,18 @@ RSpec.describe Software, type: :model do
   end
 
   context "validations" do
-    let(:invalid_software) { create(:software, version: software.version, software_identity: software.software_identity) }
+    let(:software_duplicated_version) { create(:software, version: software.version, software_identity: software.software_identity) }
+    let(:invalid_version_format_software) { create(:software, version: invalid_format) }
+    let(:invalid_format) { %w[A89A S.10 1.20.X 10,10 10_10 1-20 1/10].sample }
 
-    it "should raise an error if version is duplicated" do
-      expect{ invalid_software }.to raise_error(ActiveRecord::RecordInvalid)
+    it "raises an error if version is duplicated" do
+      software.save!
+
+      expect { software_duplicated_version }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'accepts only Digits and dots (0-9) & . ' do
+      expect { invalid_version_format_software }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
