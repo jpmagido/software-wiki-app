@@ -29,6 +29,12 @@ RSpec.describe Software, type: :model do
     end
   end
 
+  describe '.update' do
+    it 'raises not' do
+      expect { create(:software).update!(online: false) }.not_to raise_error
+    end
+  end
+
   describe ".online" do
     let(:online_software) { create(:software, online: true) }
     let(:offline_software) { create(:software, online: false) }
