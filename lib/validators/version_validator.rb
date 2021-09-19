@@ -8,10 +8,7 @@ module Validators
     private
 
     def version_uniq?(record)
-      records = record.class.where(version: record.version, software_identity: record.software_identity)
-                      .select { |r| r.id != record.id }
-
-      unless records.empty?
+      unless Software.version_duplicates(record).empty?
         record.errors.add :version, 'This version ever exist for the same software!'
       end
     end
@@ -23,4 +20,3 @@ module Validators
     end
   end
 end
-  

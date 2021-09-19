@@ -7,6 +7,7 @@ class Software < ApplicationRecord
   validates_with Validators::VersionValidator
 
   scope :online, -> { where(online: true) }
+  scope :version_duplicates, ->(software) { where(version: software.version, software_identity: software.software_identity) - [software] }
 
   def name
     software_identity.name

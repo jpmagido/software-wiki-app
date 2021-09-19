@@ -13,6 +13,13 @@ RSpec.describe Software, type: :model do
     it { should belong_to(:software_identity) }
   end
 
+  context 'Scopes' do
+    before { create_list(:software, 3, online: true) }
+
+    it { expect(described_class.online.count).to eq 3 }
+    it { expect(described_class.version_duplicates(Software.all.sample)).to be_empty }
+  end
+
   context "validations" do
     let(:software_duplicated_version) { create(:software, version: software.version, software_identity: software.software_identity) }
     let(:invalid_version_format_software) { create(:software, version: invalid_format) }
