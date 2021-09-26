@@ -25,5 +25,4 @@ Rails.application.routes.draw do
   end
 
   resources :relations, only: [:index, :show]
-
 end
