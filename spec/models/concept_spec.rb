@@ -13,6 +13,8 @@ RSpec.describe Concept, type: :model do
     it { should have_many(:softwares) }
     it { should have_many(:properties) }
     it { should have_many(:interactions) }
+    it { should have_many(:relations_to) }
+    it { should have_many(:relations_from) }
   end
   
   context "validations" do

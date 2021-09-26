@@ -1,4 +1,6 @@
 class Property < ApplicationRecord
+  include Relationable
+  
   belongs_to :concept
   has_many :interactions, as: :target, dependent: :destroy
   has_many :values, dependent: :destroy

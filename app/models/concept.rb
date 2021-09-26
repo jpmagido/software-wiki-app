@@ -1,4 +1,6 @@
 class Concept < ApplicationRecord
+  include Relationable
+  
   has_many :software_concepts, dependent: :destroy
   has_many :softwares, through: :software_concepts
   has_many :properties, dependent: :destroy

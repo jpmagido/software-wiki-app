@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   resources :softwares_identity, only: [:show, :index] do
     resources :softwares, only: :new
   end
+
+  resources :relations, only: [:index, :show]
 end
